@@ -1,0 +1,14 @@
+LEETCODE :
+https://leetcode.com/problems/find-the-highest-altitude/description/
+
+class Solution {
+public:
+    int largestAltitude(vector<int>& gain) {
+        int fadd=0,ngain=0;
+        for(int i=0;i<gain.size();i++){
+            fadd+=gain[i];
+            ngain=max(fadd,ngain);
+        }  
+          return ngain;
+    }
+};
