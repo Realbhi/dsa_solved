@@ -1,0 +1,17 @@
+
+
+Node* curr=head->next;
+Node* temp=head;
+
+while(curr!=NULL){
+
+        temp=temp->next;
+        if(curr->next!=NULL)
+          curr=curr->next->next;
+        
+        else{
+            curr=curr->next;
+        }
+    }
+
+return temp;
