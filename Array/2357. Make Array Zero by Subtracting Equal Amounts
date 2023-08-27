@@ -1,0 +1,20 @@
+LEETCODE:
+https://leetcode.com/problems/make-array-zero-by-subtracting-equal-amounts/
+
+class Solution {
+
+public:
+    int minimumOperations(vector<int>& nums) {
+    int count=0,curr;
+     sort(nums.begin(),nums.end());
+     for(int i=0;i<nums.size();i++){
+         if(nums[i]!=0){
+           curr=nums[i];
+           count++;
+           for(int j=i;j<nums.size();i++){
+             nums[j]-=curr; 
+            }
+     }}
+        return count;
+    }
+};
