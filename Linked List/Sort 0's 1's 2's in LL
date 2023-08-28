@@ -1,0 +1,135 @@
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/sort-linked-list-of-0s-1s-2s_1071937
+
+
+APPRAOCH 1: using the data.
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node()
+    {
+        this->data = 0;
+        next = NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
+    }
+    Node(int data, Node* next)
+    {
+        this->data = data;
+        this->next = next;
+    }
+};
+*/
+
+
+void joinend(Node* &joinnode,Node* curr){
+    joinnode->next=curr;
+    joinnode=joinnode->next;
+}
+
+Node* sortList(Node *head){
+    // Write your code here.
+    if(head==NULL)
+      return NULL;
+
+    // Node* temp=head;
+    // Node* temp1=head;
+    // int c0=0,c1=0,c2=0;
+    // while(temp!=NULL){
+       
+    //     if(temp->data==0){
+    //         c0++;
+    //     }
+    //     else if(temp->data==1){
+    //         c1++;
+    //     }
+    //     else {
+    //         c2++;
+    //     }
+    //     temp=temp->next;
+    // }
+
+    //  while(temp1!=NULL){
+    //      if(c0!=0){
+    //          temp1->data=0;
+    //          c0--;
+    //      }
+    //      else if(c1!=0){
+    //          temp1->data=1;
+    //          c1--;
+    //      }
+    //      else{
+    //          temp1->data=2;
+    //          c2--;
+    //      }
+    //      temp1=temp1->next;
+    //  }
+    //   return head;
+
+
+
+
+
+APPOARCH 2: Using link only.
+
+
+        //  creating dummy nodes
+         Node* zeroll=new Node(-1);
+         Node* zerotail=zeroll;
+
+        //  creating dummy nodes
+         Node* onell=new Node(-1);
+         Node* onetail=onell;
+
+        //  creating dummy nodes
+         Node* twoll=new Node(-1);
+         Node* twotail=twoll;
+
+         Node* curr=head;
+
+         while(curr!=NULL){
+
+             if(curr->data==0){
+                 joinend(zerotail,curr);
+
+             }
+
+             else if(curr->data==1){
+                 joinend(onetail,curr);
+             }
+
+             else if(curr->data==2 ){
+                 joinend(twotail,curr);
+             }
+
+             curr=curr->next;
+         }
+
+
+         if(onell->next!=NULL){
+           zerotail->next=onell->next;
+         }
+
+         else{
+             zerotail->next=twoll->next;
+         }
+
+         onetail->next=twoll->next;
+         twotail->next=NULL;
+
+         head=zeroll->next;
+         delete zeroll;
+         delete onell;
+         delete twoll;
+
+         return head; 
+
+}
