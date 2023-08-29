@@ -1,0 +1,53 @@
+LEETCODE:
+https://leetcode.com/problems/palindrome-linked-list/
+
+APPROACH 1: BY creating a seperate vector with same element as linked list and then checking with the vector for palindrome or not.
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+
+private:
+     bool saypali(vector<int> &clone){
+        int s=0;
+        int y=clone.size()-1;
+
+        while(s<y){
+            if(clone[s]!=clone[y]){
+                return false;
+            }
+
+            s++;
+            y--;
+        }
+
+        return true;
+     }
+
+public:
+    bool isPalindrome(ListNode* head) {
+
+        if(head==NULL)
+          return false;
+
+        if(head->next==NULL)
+          return true;
+        
+
+        vector<int> clone;
+        ListNode* temp=head;
+
+        while(temp!=NULL){
+            clone.push_back(temp->val);
+            temp=temp->next;
+        }
+        return saypali(clone);
+    }
+};
