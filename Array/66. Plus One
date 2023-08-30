@@ -1,0 +1,49 @@
+LEETCODE:
+https://leetcode.com/problems/plus-one/
+
+
+//APPROACH 1 :
+
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+         
+         vector<int> value;
+         int sum=1;
+         int n=digits.size()-1;
+         while(n>=0){
+             if(sum+digits[n]>9){
+                 value.push_back((sum+digits[n])%10);
+                 sum=1;
+             }
+             else{
+                  value.push_back(sum+digits[n]);
+                  sum=0;
+             }
+
+             n--;
+         }
+         if(sum==1){
+              value.push_back(1);
+         }
+
+         reverse( value.begin(),value.end());
+         return value;
+        }
+    
+};
+
+
+
+//APPROACH 2 :: without creating a new vector
+
+  int n=digits.size();
+      for(int i=n-1;i>=0;i--){
+            digits[i]++;
+            if(digits[i]<10){
+                 return digits;
+            }
+            digits[i]=0;
+        }
+      digits.insert(digits.begin(),1);
+      return digits; 
