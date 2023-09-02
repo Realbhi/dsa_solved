@@ -1,0 +1,35 @@
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/reverse-stack-using-recursion_631875
+
+
+void insert_bottom(stack<int> &stack,int num)
+{
+    
+    if(stack.empty())
+    {
+        stack.push(num);
+        return ;
+    }
+
+    int elem=stack.top();
+    stack.pop();
+    insert_bottom(stack,num);
+    stack.push(elem);
+    
+}
+
+void reverseStack(stack<int> &stack) 
+{
+    // Write your code here
+    if(stack.empty())
+    {
+        return;
+    }
+
+    int num=stack.top();
+    stack.pop();
+    reverseStack(stack);
+    
+    insert_bottom(stack,num);
+   
+}
