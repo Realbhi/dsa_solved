@@ -1,0 +1,33 @@
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/delete-middle-element-from-stack_985246?leftPanelTab=1
+
+
+#include <bits/stdc++.h> 
+
+//recursive call
+void giveans(stack<int>& inputStack,int size,int count)
+{
+     if(count==size/2)
+     {
+        inputStack.pop();
+        return;
+     }
+
+     
+     int elem=inputStack.top();
+     inputStack.pop();
+     giveans(inputStack,size,count+1);
+
+     //retriving back the element poped earlier in the stack again
+     inputStack.push(elem);
+    
+}
+
+void deleteMiddle(stack<int>&inputStack, int N){
+	
+   // Write your code here
+    int count=0;
+    giveans(inputStack,N,count);
+    
+   
+}
