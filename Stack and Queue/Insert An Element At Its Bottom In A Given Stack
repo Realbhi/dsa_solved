@@ -1,0 +1,28 @@
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/insert-an-element-at-its-bottom-in-a-given-stack_1171166?leftPanelTab=0
+
+
+Earlier i thought, how to return the stack but i have taken the reference so no need to do that.
+#include <bits/stdc++.h> 
+ void recursion(stack<int>& myStack, int x) 
+{
+     if(myStack.empty()){
+         myStack.push(x);
+         return;
+     }
+
+     int elem=myStack.top();
+     myStack.pop();
+     recursion(myStack,x);
+     myStack.push(elem);
+
+
+}
+
+
+stack<int> pushAtBottom(stack<int>& myStack, int x) 
+{
+    // Write your code here.
+    recursion(myStack,x);
+    return myStack;
+}
