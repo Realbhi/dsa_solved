@@ -1,0 +1,160 @@
+#include<iostream>
+using namespace std;
+
+class Node{
+    public :
+        int data;
+        Node* next;
+
+   //  constructor
+    Node(int data){
+        this->data=data;
+        this->next=NULL;
+    }
+
+    // destructor
+    ~Node(){
+
+        int value=this->data;
+        if(this -> next != NULL){
+            delete next;
+            this->next=NULL;
+      }
+      cout<<"the value which is free is: "<<value<<" "<<endl;
+    }
+
+};
+
+// insert at head..
+void insertAthead(Node* &head,int d)
+{
+    Node* temp=new Node(d);
+    temp ->next=head;
+    head=temp;
+}
+
+void insertAttail(Node* &tail,int d)
+{
+    Node* temp=new Node(d);
+    tail->next=temp;
+    tail=tail->next;
+    // tail=temp;
+}
+
+
+// insert At particular position .
+void insertAtposi(int pos,Node* &head,Node* &tail,int d)
+{
+
+    if(pos==1)
+   {
+        insertAthead(head,d);
+        return;
+    }
+
+
+    Node* insertNode=new Node(d);
+    Node* temp=head;
+    int i=1;
+    // for(int i=1;i<pos-1;i++){
+    //     temp=temp->next;
+    // }
+    while (i<pos-1)
+    {
+        temp=temp->next;
+        i++;
+    }
+
+    if(temp->next==NULL)
+    {
+        insertAttail(tail,100);
+        return ;
+    }
+    
+   
+   insertNode ->next= temp->next; 
+   temp->next=insertNode;
+   
+}
+
+// delete at first
+void deletenode(Node* &head,Node* &tail,int pos)
+{
+    
+    if(pos==1)
+    {
+        Node* temp=head;
+        head = head->next;
+        temp -> next=NULL;
+        delete temp;
+    }
+    else
+    {
+
+         Node* prev=NULL;
+         Node* curr=head;
+
+         int cnt=1;
+         while(cnt<pos) 
+         {
+            prev=curr;
+            curr=curr->next;
+            cnt++;
+         }
+
+         if(prev->next==tail) 
+         {
+           prev->next=NULL;
+           tail=prev;
+           return ;
+         }
+
+         prev->next=curr->next;
+         curr->next=NULL;
+         delete curr;
+    }
+}
+
+
+void printlist(Node* &head)
+{
+    Node* temp=head;
+   
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+
+
+int main(){
+  
+//   as we have to create it in a heap so we use *. The Node* :: written because we have to create it in the heap memory.
+
+// creating a new node.
+   Node* node1 =new Node(10);
+
+// making pointer to 1st node that is head.
+   Node* head=node1;
+
+// making pointer to 1st node that is head when one node is present only.
+   Node* tail=node1;
+
+//   cout<<head->data<<" ";
+
+      insertAthead(head,12);
+//   printlist(head);
+     insertAttail(tail,30);
+//   printlist(head);
+
+  insertAtposi(3,head,tail, 100);
+  printlist(head);
+
+
+  deletenode(head,tail, 3);
+  printlist(head);
+  cout<<head->data<<" "<<tail->data;
+
+}
