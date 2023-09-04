@@ -45,6 +45,41 @@ public:
 
 
 
+
+
+Try 2: 
+
+if(head==NULL || head->next==NULL)
+    return head;
+
+    ListNode* curr=head;
+    ListNode* temp;
+    ListNode* forward;
+
+    while(curr->next!=NULL){
+
+        forward=curr->next;
+        // temp=curr;
+        if(curr->val==forward->val){
+        //    temp=curr->next;
+           curr->next=forward->next;
+           forward->next=NULL;
+           delete(forward);
+        }
+
+        else{
+            curr=curr->next;
+        }
+    }
+
+
+    return head;
+
+
+
+
+
+
 WRONG APPROACH TRIED EARLIER
 if(head==NULL)
          return NULL;
@@ -58,6 +93,8 @@ if(head==NULL)
              {
                  forward=temp->next;
                  delete(temp);
+
+                // was using the deleted pointer temp even after deleting.
                  temp=forward;
              }
              curr->next=temp;
