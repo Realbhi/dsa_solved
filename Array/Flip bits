@@ -1,0 +1,40 @@
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/flip-bits_1063248?leftPanelTab=0
+
+
+//change the bits with 1 to -1 and 0 to 1.
+//applying kadane algo so the we could find max subarray sum with 1 which appeared after flipping for 0.
+
+#include <bits/stdc++.h> 
+int flipBits(int* arr, int n) 
+{
+    // WRITE YOUR CODE HERE
+    int count=0;
+    int sum=0,maxc=INT_MIN;
+
+   
+   for(int i=0;i<n;i++){
+
+       if(arr[i]==1)
+       {
+           arr[i]=-1;
+           count++;
+       }
+       else
+       {
+           arr[i]=1;
+        //    count++;
+       }
+
+       sum+=arr[i];
+       if(sum<0) sum=0;
+       maxc=max(maxc,sum);
+
+   }
+
+
+//    maxc=max(maxc,sum);
+
+   return maxc+count;
+
+}
