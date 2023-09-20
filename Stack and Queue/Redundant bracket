@@ -1,0 +1,44 @@
+Coding Ninja:
+https://www.codingninjas.com/studio/problems/redundant-brackets_975473
+
+
+#include <bits/stdc++.h> 
+#include<stack>
+
+bool findRedundantBrackets(string &s)
+{
+    // Write your code here.
+    stack<char> redundant;
+    int len=s.length();
+    for(int i=0;i<len;i++)
+    {
+
+        if(s[i]=='(' || s[i]=='+' || s[i]=='-' || s[i]=='*' || s[i]=='/')
+          redundant.push(s[i]);
+
+
+        else if(s[i]==')')
+        { 
+
+             bool giveans=true;
+             while (redundant.top()!='(')
+             {
+                 char ch = redundant.top();
+                 if( ch=='+' || ch=='-' || ch=='*' || ch=='/')
+                 {
+                      giveans=false;
+                 }
+                 redundant.pop();
+             }
+
+            
+            if(giveans==1)
+              return 1;
+
+            redundant.pop();  
+        }
+    }
+
+    if(redundant.empty()) return 0;
+    
+}
