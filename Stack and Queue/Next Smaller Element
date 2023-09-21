@@ -1,0 +1,32 @@
+vector<int> nextSmallerElement(vector<int> &arr, int n)
+{
+    // Write your code here.
+    vector<int> ans;
+
+    int len=arr.size();
+    for(int i=0;i<len;i++)
+    {
+        int minval=INT_MAX,flag=0;
+        for(int j=i+1;j<len;j++)
+        {
+
+            if(arr[j]<minval && arr[j]<arr[i])
+            {
+                flag=1;
+                minval=arr[j];
+                break;
+            }
+              
+        }
+
+        // flag==1 ? ans.push_back(minval) : ans.push_back(-1);
+        if(flag==1)
+          ans.push_back(minval);
+
+        else
+         ans.push_back(-1);
+
+    }
+
+    return ans;
+}
