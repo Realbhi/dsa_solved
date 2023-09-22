@@ -1,0 +1,85 @@
+LEETCODE:
+https://leetcode.com/problems/largest-rectangle-in-histogram/
+
+
+class Solution {
+
+private :
+vector<int> findnextsmaller(vector<int> arr,int n)
+{
+
+      vector<int> next(n);
+      stack<int> st;
+      st.push(-1);
+
+      for(int i=n-1;i>=0;i--){
+
+          int curr=arr[i];
+          while(st.top()!=-1 && arr[st.top()]>=curr){
+              st.pop();
+          }
+
+          next[i]=st.top();
+          st.push(i);
+      }
+
+      return next;
+
+}
+
+
+vector<int> findprevsmaller(vector<int> arr,int n)
+{
+
+      vector<int> next(n);
+      stack<int> st;
+      st.push(-1);
+
+      for(int i=0;i<n;i++){
+
+          int curr=arr[i];
+          while(st.top()!=-1 && arr[st.top()]>=curr){
+              st.pop();
+          }
+
+          next[i]=st.top();
+          st.push(i);
+      }
+
+      return next;
+
+}
+
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        
+        int len=heights.size();
+
+        vector<int> nextsmall(len);
+        nextsmall=findnextsmaller(heights,len);
+
+
+        vector<int> prevsmall(len);
+        prevsmall=findprevsmaller(heights,len);
+
+
+        int area,l,b,maxarea=INT_MIN;
+        for(int i=0;i<len;i++){
+            
+            l=heights[i];
+
+            if(nextsmall[i]==-1){
+                nextsmall[i]=len;
+            }
+
+            b=nextsmall[i]-prevsmall[i]-1;
+
+            area=l*b;
+
+            maxarea=max(maxarea,area);
+        }
+
+        return maxarea;
+
+    }
+};
