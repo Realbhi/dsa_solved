@@ -1,0 +1,97 @@
+LEETCODE:
+https://leetcode.com/problems/set-matrix-zeroes/
+
+
+
+
+APPROACH 1: first search for 0 in the matrix .if found mark the entire row and column as -1 .do the same for other zeros if found in the matrix.
+            finally mark 0 when -1 found in the array
+
+void setZeros(vector<vector<int>> &matrix)
+{
+	// Write your code here.
+	int rowsize=matrix.size(),colsize=matrix[0].size();
+
+	for(int i=0;i<rowsize;i++)
+	{
+		for(int j=0;j<colsize;j++)
+		{
+           if(matrix[i][j]==0)
+		   {
+
+               int col1=0;
+			   //making row zeros
+			   while(col1<colsize)
+			   {
+				   if(matrix[i][col1]!=0){matrix[i][col1]=-1;}
+				   col1++;
+			   }
+               
+               int row1=0;
+			   while(row1<rowsize)
+			   {
+				   if(matrix[row1][j]!=0){matrix[row1][j]=-1;}
+				   row1++;
+			   }
+		   }
+           
+		}
+	}
+
+
+	for(int i=0;i<rowsize;i++){
+		for(int j=0;j<colsize;j++){
+
+			if(matrix[i][j]==-1){
+				matrix[i][j]=0;
+			}
+		}
+	}
+
+}
+
+
+
+
+
+
+
+APPROACH 2 : A Seperate vector or an array is maintained seperatly for row and column. when we see  matrix[row][column] == 0 then we just mark
+            that row or column in the seperate array maintained.
+
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        
+        int row=matrix.size(),col=matrix[0].size();
+        vector<int> sayrowzero(row,0);
+        vector<int> saycolzero(col,0);
+
+
+        for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    //mark it as 1 in respective  vector maitained.
+
+                    if(sayrowzero[i]==0) sayrowzero[i]=1;
+                    if(saycolzero[j]==0) saycolzero[j]=1;  
+                }
+            }
+        }
+
+         for(int i=0;i<row;i++)
+        {
+            for(int j=0;j<col;j++)
+            {
+                if(sayrowzero[i]==1 || saycolzero[j]==1) matrix[i][j]=0;
+            }
+        }
+
+        
+        
+    }
+};
