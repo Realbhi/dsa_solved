@@ -3,11 +3,10 @@ NOTE :
 
 2.But  when we  call any PARAMETERISED CONSTRUCTOR or COPY CONSTRUCTOR then the DEFAULT CONSTRUCTOR created  explicitly or created by default will not execute.
 
-3.But when we call the other object of same class then the DEFAULT CONSTRUCTOR created by default or explicitly will be viable to execute.
+3.But when we call the other object of same class then the DEFAULT CONSTRUCTOR created by default or explicitly will be viable to execute
 
 
 
-  
 #include<iostream>
 using namespace std;
 
