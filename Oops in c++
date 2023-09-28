@@ -1,0 +1,90 @@
+concepts covered :
+#access modifiers
+#getter and setter
+#static vs dynammic memory allocation
+
+
+
+#include<iostream>
+using namespace std;
+
+class Hero{
+
+    // by default if the class is empty then the size of the object still is given as 1byte.
+
+    // by default the class is private.so simply by creating object we cannot access the data member or member function anywhere we want.
+
+    // The location were we can access is defined by access modifiers. Private : can access only within the class ,public: can access within and outside the class
+
+    // properties
+
+    private:
+    int health;
+
+
+    public:
+    char level;
+
+     void saylevel()
+     {
+        cout<<level<<endl;
+     }
+
+     int gethealth(){
+        return health;
+     }
+
+     int getlevel(){
+        return level;
+     }
+
+     void sethealth(int h){
+        health=h;
+     }
+
+     void setlevel(char ch){
+        level=ch;
+     }
+
+
+};
+int main(){
+   
+   // static memory allocation : so when the object is created , the memory for health(4byte) and level(1byte) is allocated. (compile time memory allocation)
+   Hero h1;
+
+
+
+   //  dynamic memory allocation: so dynamic memory allocation works during the runtime .
+   Hero *h2=new Hero; 
+  //  the above line actually means that , a pointer variable h2 is created which actually holds the  address of the memory location very actual needed value is stored.
+
+
+
+   // h1.health= 75;
+
+
+
+   // using setter and setting the value of health.  
+   h1.sethealth(66);
+   h1.setlevel('m');
+
+
+
+  // cout<<sizeof(h1)<<endl;
+   cout<<h1.gethealth()<<" "<<h1.level<<endl;
+
+
+
+  // here we have used (*h2) instead of b because b variable is pointer which is storing the address.but as we need the value which is present in that address we use (*h2).  
+   (*h2).sethealth(67);
+   (*h2).setlevel('v');
+   cout<<(*h2).gethealth()<<" "<<(*h2).level<<endl; 
+
+  // another way to use.
+
+   h2->sethealth(68);
+   h2->setlevel('j');
+   cout<<h2->gethealth()<<" "<<h2->level; 
+   return 0;
+}
