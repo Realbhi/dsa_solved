@@ -1,0 +1,79 @@
+NOTE :
+1.by default we have a DEFAULT CONSTRUCTOR and COPY CONSTRUCTOR created when object is created of a particular class .we can create/write it explicitly also.
+
+2.But  when we  call any PARAMETERISED CONSTRUCTOR or COPY CONSTRUCTOR then the DEFAULT CONSTRUCTOR created  explicitly or created by default will not execute.
+
+3.But when we call the other object of same class then the DEFAULT CONSTRUCTOR created by default or explicitly will be viable to execute.
+
+
+
+  
+#include<iostream>
+using namespace std;
+
+class Hero{
+
+  private:
+    int health;
+
+  public:
+    char level;
+
+
+   Hero(){
+    cout<<"default constructor called"<<endl;
+   }
+
+   // parameterized constructor
+   // 1.so THIS keyword is ntg but a pointer variable which stores the address of  the  object ie h1 here.
+   
+   Hero(int health){
+
+    // health=health; --> this here creates a confusion bw the health data member of object and the health variable which is passed to the parameterized constructor.
+     cout<<"address of this :"<<this<<endl;
+     this->health=health;
+   }
+
+   Hero(int health,int level){
+      this->health=health;
+      this->level=level;
+   }
+       
+
+   int gethealth(){
+    return health;
+   }
+
+
+   char getlevel(){
+    return level;
+   }
+
+   void sethealth(int h){
+    health=h;
+   }
+
+    void setlevel(int ch){
+    health=ch;
+   }
+
+
+};
+
+int main(){
+   
+        
+    Hero h1(10); /*parameterized constructor is called here.*/
+
+    // cout<<h1.getlevel();
+    cout<<"address of  h1 object :"<<&h1<<endl;
+    cout<<h1.gethealth()<<endl;
+
+
+    Hero *h2=new Hero(12);
+
+    Hero h3(100,'a');
+    cout<<h3.gethealth()<<" "<<h3.getlevel()<<endl;
+
+    return 0;
+}
