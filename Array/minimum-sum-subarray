@@ -1,0 +1,38 @@
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/find-minimum-sum-subarray-of-given-size_873368?leftPanelTab=2
+
+
+
+int firstsum(int arr[], int str, int end)
+{
+    
+    int sumval=0;
+    for(int i=str;i<=end;i++){
+       sumval+=arr[i];
+    }
+    return sumval;
+
+}
+
+
+int minSubarraySum(int arr[], int n, int k) 
+{
+    // Write your code here
+     
+    int sum=firstsum(arr,0,k-1);
+    if(n==k)
+    {
+        return sum;
+    }
+    
+    int x=0,minvalue=INT_MAX;
+    for(int i=k;i<n;i++){
+
+        minvalue=min(minvalue,sum);
+        sum=sum-arr[x]+arr[i];
+        x++;
+    }
+
+    return min(minvalue,sum);
+
+}
