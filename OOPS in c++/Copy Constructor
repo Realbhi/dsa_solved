@@ -1,0 +1,75 @@
+NOTE ::
+1. Even when not explicitly written ,the DEFAULT CONSTRUCTOR is created when we create a object.In the same way copy constructor is also created by default wihout any explicit mention.
+
+2.By the way we can also explicitly write the COPY CONSTRUCTOR as written below.But this will destroy the earlier created DEFAULT COPY CONSTRUCTOR.
+
+
+
+#include<iostream>
+using namespace std;
+
+class Hero{
+   
+   private:
+    int health;
+
+  public:
+    char level;
+
+   Hero(){
+    cout<<"default constructor called"<<endl;
+   }
+
+   Hero(int health)
+   {
+     cout<<"address of this :"<<this<<endl;
+     this->health=health;
+   }
+
+   Hero(int health,int level){
+      this->health=health;
+      this->level=level;
+   }
+ 
+   // so when '&' operator is not used then ,it becomes PASS BY VALUE. We know in pass by value copy is created ie Hero temp passed to copy constructor creates a copy .
+      But this copy created will again call a copy constructor and this loop go on and on. To avoid this we PASS BY REFERENCE.
+
+   Hero (Hero& temp){
+      this->health=temp.health;
+      this->level=temp.level;
+   }
+
+   int gethealth(){
+    return health;
+   }
+
+   char getlevel(){
+    return level;
+   }
+
+   void sethealth(int h){
+    health=h;
+   }
+
+    void setlevel(int ch){
+    health=ch;
+   }
+
+   void print(){
+      cout<<this->health<<" "<<this->level<<endl;
+   }
+
+};
+
+
+int main(){
+
+    Hero batman(100,'a');
+    batman.print();
+
+   //Due to default COPY CONSTRUCTOR ,when explicitly not created.
+    Hero superman(batman) ;
+    superman.print();
+
+    return 0;
+}
