@@ -1,0 +1,45 @@
+NOTE ::
+
+By declaring a member function as static, you make it independent of any particular object of the class. A static member function can be called even if no objects of 
+the class exist and the static functions are accessed using only the class name and the scope resolution operator (::)
+
+• A static member function can only access static data member, other static member functions and any other functions from outside the class.
+• Static member functions have a class scope and they do not have access to the this pointer of the class. 
+• You could use a static member function to determine whether some objects of the class have been created or not.
+
+
+
+#include<iostream>
+using namespace std;
+class Hero{
+
+    public:
+     static int count;
+
+    Hero(){
+        count++;
+    }
+
+    static int getcount(){
+        return count;
+    }
+};
+
+//one use of taking function as static is , can be used to count the no of objects created.
+int Hero :: count=0;
+
+int main(){
+
+    cout<<"initial value :"<<Hero ::getcount()<<endl;
+    Hero obj1;
+    Hero obj2;
+
+    cout<<"final value :"<<Hero ::getcount()<<endl;
+
+  return 0;
+}
+
+
+OUTPUT::
+initial value :0
+final value :2
