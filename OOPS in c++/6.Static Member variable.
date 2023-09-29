@@ -1,0 +1,52 @@
+NOTE:
+
+1. The static variable defined within the class is also know as static memeber variable or class variable while other members not defined as static are called INSTANCE VARIABLE.
+2. It must be defined outside the class and its compulsory ( Datatype Classname :: VariableName = Value)
+3. Well the class variable does not belong to the object ,it belong to the whole class. We dont need object to call it.
+4. If the static variable is not declared , then it is intialised to 0 by default.
+5. As we have seen, for every object created the data members are created for each object. But for static variable, only ONE COPY is created even after multiple objects 
+   are created.
+
+
+
+#include<iostream>
+using namespace std;
+
+class Hero{
+
+    public:
+    int health;
+    int level;
+    static int time_to_complete;
+
+    Hero(){
+        cout<<"This is a default constructor"<<endl;
+    }
+
+    ~Hero()
+    {
+        cout<<"this is a default destructor"<<endl;
+    }
+};
+
+// Datatype Classname :: VariableName = Value;
+int Hero :: time_to_complete =5;
+
+
+int main(){
+
+    //called without intializing object.
+    cout<< Hero:: time_to_complete <<endl;
+
+    //can also be accessed by creating the object.
+    Hero obj;
+    cout<<obj.time_to_complete<<endl;
+    
+    //value can be changed as follows
+    obj.time_to_complete=10;
+    cout<< obj.time_to_complete<<endl;
+    cout<< Hero:: time_to_complete <<endl;
+    
+    return 0;
+}
+
