@@ -1,0 +1,46 @@
+NOTE:
+
+1.like Constructor (used to initialise members) ,we have DESTRUCTOR which is used to deallocate memory .
+2.destructor in the same way :
+   -- Have same name as class.
+   -- do not have any return type.
+   -- do not have any input parameter inside.
+3.The DESTRUCTOR is also present by default.we can also write it explicitly.
+4. for STATIC ALLOCATION : Constructor called atomatically.
+   for DYNAMIC ALLOCATION: Constructor called manually.
+5.It is better to intialize Constructor and destructor as public.
+
+
+
+
+#include<iostream>
+using namespace std;
+
+class Hero{
+
+    public:
+
+    Hero(){
+        cout<<"This is a default constructor"<<endl;
+    }
+
+    ~Hero()
+    {
+        cout<<"this is a default destructor"<<endl;
+    }
+};
+
+
+int main(){
+
+    //static allocation
+    Hero h1;
+
+
+    //dynamic allocation: 
+    Hero *h2 =new Hero();
+    delete h2;   /*deleted manually*/
+    
+
+    return 0;
+}
