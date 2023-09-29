@@ -1,0 +1,98 @@
+Shallow Copy:
+
+A shallow copy of an object creates a new object but does not duplicate the dynamically allocated memory or the contents 
+of the memory from the original object. Instead, it copies references or pointers to the same memory locations. 
+As a result, both the original object and the copy will share the same underlying data, and changes made to the data 
+through one object will affect the other.
+
+
+include<iostream>
+using namespace std;
+
+class Hero{
+   
+   private:
+    int health;
+
+  public:
+    char level;
+    char *name;
+
+   Hero()
+   {
+    cout<<"default constructor called"<<endl;
+    name=new char[100];
+   }
+
+   Hero(int health)
+   {
+     cout<<"address of this :"<<this<<endl;
+     this->health=health;
+   }
+
+   Hero(int health,int level){
+      this->health=health;
+      this->level=level;
+   }
+ 
+   
+   int gethealth(){
+    return health;
+   }
+
+   char getlevel(){
+    return level;
+   }
+
+   void sethealth(int h){
+    health=h;
+   }
+
+    void setlevel(char ch){
+    level=ch;
+   }
+
+
+   void setname(char name[]){
+    strcpy(this->name,name);
+   }
+
+   void print(){
+      cout<<this->name<<" "<<this->health<<" "<<this->level<<endl;
+   }
+
+};
+
+
+int main(){
+
+    Hero hero1;
+    hero1.sethealth(100);
+    hero1.setlevel('a');
+    char name[9]="chotu";
+    hero1.setname(name);
+
+    hero1.print();
+
+    Hero hero2(hero1);
+    hero2.print();
+
+    hero1.name[0]='y';
+    hero1.print();
+
+    hero2.print();
+
+
+    return 0;
+}
+
+
+
+// it is cleary seen in the output that ,the value have changed in second object name also when first letter of the name 
+of first object is changed .
+
+OUTPUT :
+chotu 100 a
+chotu 100 a
+yhotu 100 a
+yhotu 100 a
