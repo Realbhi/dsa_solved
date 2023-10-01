@@ -1,0 +1,50 @@
+PROTECTED : This access modifier is kind of similar to private because ,the memeber with protected access modifier can be accessed  only within the class but the check is 
+it can also be accessed in the child class.
+
+In the below code we can observe that , the mode of inheritance is protected.So the public member inherited will also become protected .As we cannot access the protected 
+members outside the class so i have created print function.
+
+#include<iostream>
+using namespace std;
+
+class Human
+{
+    public:
+
+    string name;
+    int age;
+    int height;
+
+};
+
+class Male : protected Human
+{
+     
+     public:
+
+     int weight;
+
+     void match_info(string name,int age,int height)
+    {
+      this->name=name;
+      this->age=age;
+      this->height=height;
+    }
+
+    void print()
+    {
+       cout<<this->name<<" "<<this->age<<" "<<this->height<<endl;
+
+    }
+
+};
+
+
+int main()
+{
+   Male obj;
+   obj.weight=54;
+   obj.match_info("abhi",21,6);
+   obj.print();
+   
+}
