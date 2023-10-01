@@ -1,0 +1,101 @@
+ INHERITANCE defn::
+ 
+ Inheritance is the process of inheriting the properties and behavior of an existing class into a new class. When we inherit the class, we can reuse the existing class’s methods 
+ and fields into a new class. Inheritance can also be defined as the Is-A relationship, which is also known as the parent-child relationship.
+ 
+
+ USE OF INHERITANCE ::
+
+ ● The main advantage of inheritance is code reusability. We can reuse the code when we inherit the existing class’s methods and fields into a new class. 
+ ● The runtime polymorphism (method overriding) can be achieved by inheritance only.
+
+ 
+
+IMPORTANT TERMINOLOGY OF INHERTANCE ::
+ 
+ ● Sub Class:The class that inherits properties fromanother class is called Subclass or Derived Class.
+ ● Super Class:The class whose properties are inheritedby subclass is called Base Class or Superclass.
+
+
+
+ C++ INHERTANCE SYNTAX ::
+ 
+ class parent_class_name 
+ { 
+    //Body of parent class    
+ };
+  
+ class child_class_name : access_modifier parent_class_name 
+ { 
+       //Body of child class     
+ };
+
+
+
+ ACCESS MODIFIER OF CLASS MEMBERS:           MODE OF INHERITANCE:             RESULT:
+
+ PUBLIC                                      PUBLIC                           PUBLIC   
+
+ PUBLIC                                      PRIVATE                          PRIVATE
+
+ PUBLIC                                      PROTECTED                        PROTECTED
+
+
+ PROTECTED                                   PUBLIC                           PROTECTED
+
+ PROTECTED                                   PRIVATE                          PRIVATE
+
+ PROTECTED                                   PROTECTED                        PROTECTED
+
+
+ PRIVATE                                     PUBLIC                           NOT ACCESIBLE 
+
+ PRIVATE                                     PRIVATE                          NOT ACCESIBLE  
+
+ PRIVATE                                     PROTECTED                        NOT ACCESIBLE 
+
+
+
+
+
+
+EXAMPLE PROGRAM ::
+
+
+#include<iostream>
+using namespace std;
+
+class Human{
+
+    public:
+
+    string name;
+    int age;
+
+};
+
+class Male : public Human{
+     
+     public:
+
+     int weight;
+     void set_weight(int num){
+        this->weight=num;
+        // cout<<this->A_no;
+    }
+
+};
+
+
+int main()
+{
+   Male obj;
+
+   //NAME AND AGE got inherited from parent class
+   obj.name="abhi";
+   obj.age=21;
+   obj.set_weight(129);
+
+   cout<<obj.name<<" "<<obj.age<<" "<<obj.A_no<<endl;
+
+}
