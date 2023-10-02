@@ -1,0 +1,43 @@
+PROBLEM arises when a particular class (as in below example class C) inherites two or more classes (class A and class B). We can see that  Class A and 
+class B have method with same name i.e void func() . If we call the method func() by creating an object of class C then which method is actually called or 
+which method we actually want to call becomes a problem. 
+
+So we can use SCOPE RESOLUTION OPERATOR as done below to access the method according to our need.
+
+
+code::
+  
+#include<iostream>
+using namespace std;
+
+class A {
+    public:
+
+    void func() {
+        cout << " I am A" << endl;
+    }
+};
+
+class B {
+    public:
+
+    void func() {
+        cout << " I am B" << endl;
+    }
+};
+
+class C: public A, public B {
+
+
+};
+
+int main() {
+
+    C obj;
+
+   //call the func() method of class A and B as shown below.
+    obj.A::func() ;
+    obj.B::func();
+
+    return 0;
+}
