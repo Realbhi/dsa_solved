@@ -1,0 +1,27 @@
+CODING NINJA :
+https://www.codingninjas.com/studio/problems/highest-occuring-character_624400
+
+
+char highestOccurringChar(char input[]) {
+    // Write your code here
+    int len = strlen(input);
+    int arr[26]={0};
+
+    for(int i=0;i<len;i++){
+         int alp= input[i] -'a';
+         arr[alp]++;
+    }
+    
+    int maxi=-1,ans=0;
+    for(int i=0;i<26;i++)
+    {
+        if(maxi<arr[i])
+        {
+            maxi=arr[i];
+            ans=i;
+        }
+    }
+    
+    char mainAns= 'a'+ans;
+    return mainAns;
+}
