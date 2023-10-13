@@ -1,0 +1,55 @@
+CODING NINJA::
+https://www.codingninjas.com/studio/problems/replace-spaces_1172172
+
+
+BY USING NEW STRING ::
+
+#include <bits/stdc++.h> 
+string replaceSpaces(string &str){
+	// Write your code here.
+
+	// int len=strlen(str);
+	string new_str="";
+	
+	for(int i=0;i< str.size();i++){
+
+		if(str[i]==' '){
+			new_str+="@40";
+		}
+
+		else{
+		new_str+=str[i];
+		}
+
+	}
+
+	return new_str;
+}
+
+
+
+WITHOUT USING :;
+#include <bits/stdc++.h> 
+string replaceSpaces(string &str){
+	// Write your code here.
+
+	// int len=strlen(str);
+	string new_str="";
+	
+	for(int i=0;i< str.size();i++){
+
+		if(str[i]==' ')
+		{
+			// new_str+="@40";
+
+      // (  occurance ,  number of charecter to replace ,  by to replace)
+			str.replace(i,1,"@40");
+		}
+
+
+	}
+
+	return str;
+}
+
+
