@@ -1,0 +1,44 @@
+LEETCODE ::
+https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/
+
+
+#include <string>
+#include <stack>
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if (needle.empty()) {
+            return 0;
+        }
+        
+        int len1 = haystack.length();
+        int len2 = needle.length();
+        
+        for (int i = 0; i <= len1 - len2; ++i) {
+
+            if (haystack[i] == needle[0]) {
+                int j = 1;
+                stack<char> st;
+                st.push(haystack[i]);
+                
+                while (j < len2) {
+                    if (haystack[i + j] == needle[j]) {
+                        st.push(haystack[i + j]);
+                        j++;
+                    } else {
+                        break;
+                    }
+                }
+                
+                if (st.size() == len2) {
+                    return i;
+                }
+            }
+
+        }
+        
+        return -1;
+    }
+};
+
