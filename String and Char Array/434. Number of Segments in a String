@@ -1,0 +1,31 @@
+LEETCODE::
+https://leetcode.com/problems/number-of-segments-in-a-string/
+
+
+class Solution {
+public:
+    int countSegments(string s) {
+
+        int i=0,j=s.length()-1;
+        while(1) {
+            if(i < s.length() && s[i] == ' ')
+               i++;
+            else if(j >= 0 && s[j] == ' ')
+              j--;
+            else break;
+        }
+
+        if(i>j || s.empty()){
+            return 0;
+        }
+        
+        int count=1;
+        for(int x=i;x<=j;x++){
+             int value=s[x];
+             if(value==32 && s[x-1]!=' '){
+                 count++;
+             }
+        }
+        return count;
+    }
+};
