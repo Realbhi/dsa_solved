@@ -1,0 +1,24 @@
+LEETCODE ::
+https://leetcode.com/problems/repeated-substring-pattern/
+
+
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+        
+        int len=s.length();
+        for(int i=1;i<=len/2;i++){
+            if(len%i==0){
+                string str="";
+                string substrr=s.substr(0,i);
+                for(int j=0;j<len/i;j++){
+                    str+=substrr;
+                }
+
+                if(s==str) return true;
+            }
+        }
+        return false;
+
+    }
+};
