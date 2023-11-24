@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int arr[6]={1,2,4,7,7,5};
+    int largest=arr[0],secondlargest=INT_MIN;
+    for(int i=1;i<6;i++){
+        if(arr[i]>largest){
+            secondlargest=largest;
+            largest=arr[i];
+        }
+
+        else if(arr[i]<largest && arr[i]>secondlargest){
+            secondlargest=arr[i];
+        }
+    }
+
+    cout<<largest<<" "<<secondlargest;
+    return 0;
+}
