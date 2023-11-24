@@ -1,4 +1,59 @@
-#include<iostream>
+CODING NINJA:
+https://www.codingninjas.com/studio/problems/ninja-and-the-second-order-elements_6581960?utm_source=youtube&utm_medium=affiliate&utm_campaign=striver_Arrayproblems
+
+
+
+int secondl(int n,vector<int> a){
+
+      int firstlargest=a[0];
+      int nextlargest=INT_MIN;
+
+      for(int i=1;i<n;i++){
+
+        if (a[i] > firstlargest) {
+          nextlargest = firstlargest;
+          firstlargest = a[i];
+        }
+
+        else if(a[i]!=firstlargest && a[i]>nextlargest){
+            nextlargest=a[i];
+        }
+      }
+
+      return nextlargest;
+
+}
+
+int seconds(int n,vector<int> a){
+
+      int firstsmallest=a[0];
+      int nextsmallest=INT_MAX;
+
+      for(int i=1;i<n;i++){
+
+        if (a[i] < firstsmallest) {
+          nextsmallest = firstsmallest;
+          firstsmallest = a[i];
+        }
+
+        else if(a[i]!=firstsmallest && a[i]<nextsmallest){
+            nextsmallest=a[i];
+        }
+      }
+
+      return nextsmallest;
+
+}
+
+
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    // Write your code here.
+   int secondlargest=secondl(n,a);
+   int secondsmallest=seconds(n,a);
+
+   return {secondlargest,secondsmallest};
+}#include<iostream>
 using namespace std;
 
 int main(){
