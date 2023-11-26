@@ -1,0 +1,50 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int arr[7]={1,2,3,4,5,6,7};
+    int d;
+    cin>>d;
+    d=d%7;
+
+// 0 1 2 3 4 5 6
+// 1 2 3 4 5 6 7
+
+// temp={5,6,7};
+// 5 6 7 1 2 3 4
+
+// 3+3=6
+// 3+2=5
+// 3+1=4
+// 3+0=3
+
+
+    int temp[d];
+    int j=0;
+    for(int i=7-d;i<7;i++){
+        temp[j++]=arr[i];
+    }
+
+    for(int i=d;i>=0;i--){
+        arr[d+i]=arr[i];
+    }
+
+     for(int i=0;i<d;i++){
+      arr[i]=temp[i];
+   }
+
+       for(int i=0;i<7;i++){
+        cout<<arr[i];
+    }
+     
+}
+
+
+optimal :
+reverse(arr.begin() , arr.begin()+(n-d))
+reverse(arr.begin()+(n-d) , arr.end())
+reverse(arr.begin() , arr.end())
+
+
+
+
