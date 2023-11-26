@@ -1,0 +1,30 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int arr[10]={1,2,5,0,3,5,0,0,354,4};
+ 
+    // first find first non-zero element ::
+    int j=-1;
+    for(int i=0;i<10;i++){
+
+        if(arr[i]==0){
+            j=i;
+            break;
+        }
+    }
+   
+    // while traversing array j always points to zero.
+    for(int i=j;i<10;i++){
+       if(arr[i]!=0){
+          swap(arr[i],arr[j]);
+          j++;
+       }
+    }
+
+    for(int i=0;i<10;i++){
+        cout<<arr[i]<<" ";
+    }
+
+   return 0;
+}
