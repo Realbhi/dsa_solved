@@ -1,0 +1,100 @@
+optimal ::
+
+#include<iostream>
+using namespace std;
+int main(){
+    
+    int arr[6]={0,8,3,1,4,0};
+
+    int len = sizeof(arr)/sizeof(int);
+    int right=0,left=0,sum=arr[0],mainlen=0;
+
+    int key=8;  /*the sum that is needed to be matched*/
+    while(right<len && left<len){
+
+        while(sum>key && left<=right){
+            sum-=arr[left];
+            left++;
+        }
+
+        if(sum==key){
+            mainlen=max(mainlen,right-left+1);
+        }
+
+        right++;
+        if(right<len){
+           sum+=arr[right];
+        }
+    }
+
+    cout<<mainlen;
+
+    return 0;
+}
+
+
+
+
+
+
+Brute force ::
+
+#include<iostream>
+#include<vector>
+
+using namespace std;
+
+int main(){
+    
+    int arr1[6]={0,8,3,1,4,6};
+    
+    // int si = sizeof(arr1)/sizeof(int);
+
+    int num=8,flag=0,mainlen=-1,len;
+    for(int i=0;i<si-1;i++){
+          int sum=0;
+        for(int j=i;j<si;j++){
+            sum=sum+arr1[j];
+            if(sum==num)
+            {
+                len=(j-i)+1;
+                mainlen=max(mainlen,len);
+                flag=1;
+            }
+        }
+    }
+  if(flag==1){
+    cout<<mainlen;
+  }
+   if(flag==0){
+    cout<<"sum not found";
+   }
+
+    return 0;
+}
+
+
+
+// while(st<len && ed<len){
+
+
+    //     if(sum>key){
+    //        sum-=arr[ed];
+    //        ed++;
+    //     }
+
+    //     if(sum==key){
+    //         mainlen=max(st-ed+1,mainlen);
+    //     }
+        
+    //     st++;
+    //     if(st<len){
+    //         sum+=arr[st];
+    //     }
+
+    // }
+
+
+
+
+
