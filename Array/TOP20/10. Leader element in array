@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main(){
+    int arr[]={10,22,12,3,0,6};
+    int len=sizeof(arr)/sizeof(int);
+    int ans[len],maxi=-9999999;
+    int index=0;
+    for(int i=len-1;i>=0;i--){
+        if(arr[i]>maxi) {
+            maxi=arr[i];
+            ans[index++]=arr[i];
+        }
+
+    }
+    for(int j=0;j<index;j++){
+        printf("%d ",ans[j]);
+    }
+}
