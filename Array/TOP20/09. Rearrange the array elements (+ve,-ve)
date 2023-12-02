@@ -1,0 +1,96 @@
+Condition :: Equal number of +ve's and -ve's.
+
+#include<stdio.h>
+int main(){
+
+    int arr[]={-1,3,-4,5,6,7,-9,-5};
+    int len=sizeof(arr)/sizeof(int);
+
+    int arrange[len];
+
+    int pos=0,neg=1;
+    for(int i=0;i<len;i++){
+
+        if(arr[i]>=0){
+            arrange[pos]=arr[i];
+            pos+=2;
+        }
+
+        else{
+            arrange[neg]=arr[i];
+            neg+=2;
+        }
+
+    }
+
+    for(int i=0;i<len;i++){
+        printf("%d ",arrange[i]);
+    }
+}
+
+
+
+
+condition :: if -ve's and +ve's are not same in number
+
+
+#include<stdio.h>
+int main(){
+
+    int arr[]={-1,3,-4,5,6,7,-9,-5,-9,-7};
+    int len=sizeof(arr)/sizeof(int);
+
+
+    int postive[len];
+    int negative[len];
+
+    int posi=0,negi=0;
+    for(int i=0;i<len;i++){
+        if(arr[i]>0){
+           postive[posi]=arr[i];
+           posi++;
+        }
+
+        else{
+            negative[negi]=arr[i];
+            negi++;
+        }
+    }
+    int sizee=posi+negi;
+    int final[sizee];
+    if(posi>negi){
+       for(int x=0;x<negi;x++){
+          
+          final[x*2]=postive[x];
+          final[(x*2)+1]=negative[x];
+
+       }
+
+       int index=negi*2;
+       for(int j=negi;j<posi;j++){
+        final[index++]=postive[j];
+       }
+
+    }
+
+    else{
+       
+       for(int x=0;x<posi;x++){
+          final[x*2]=postive[x];
+          final[(x*2)+1]=negative[x];
+       }
+       int index=posi*2;
+       for(int j=posi;j<negi;j++){
+        final[index++]=negative[j];
+       }
+    }
+
+
+    for(int i=0;i<sizee;i++){
+        printf("%d ",final[i]);
+    }
+}
+
+
+
+
