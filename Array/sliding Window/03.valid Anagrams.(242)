@@ -1,0 +1,51 @@
+Leetcode :
+https://leetcode.com/problems/valid-anagram/description/
+
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+
+        if(s.length()!=t.length()){
+            return false;
+        }
+        map<int,int>mp1;
+        map<int,int>mp2;
+        int i=0,j=0;
+        
+        for(int i=0;i<s.length();i++){
+            mp1[s[i]]++;
+        }
+       
+        for(int j=0;j<s.length();j++){
+            mp2[t[j]]++;
+        }
+       
+        if(mp1==mp2) return true;
+        else return false;
+
+    }
+};
+
+
+
+Another approach : 
+
+  for(auto ti:t)
+  {
+       if(mp.find(ti)==mp.end()){
+              return false;
+             }
+
+      else{
+         mp[ti]--;
+      }
+   }
+
+ for(auto itr:mp)
+ {
+    if(itr.second!=0){
+        return false;
+      }
+  }
+
+
