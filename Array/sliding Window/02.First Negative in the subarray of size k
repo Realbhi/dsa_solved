@@ -1,0 +1,46 @@
+coding ninja :
+https://www.codingninjas.com/studio/problems/first-negative-in-every-window_759333
+
+
+#include<bits/stdc++.h>
+vector<int> firstNegative(vector<int> arr, int n, int k) {
+	// Write your code here.
+	list <int> lt;
+	vector<int>v;
+	int right=0,left=0;
+	while(right<n)
+	{
+        // calculation
+        if (arr[right] < 0) {
+          lt.push_back(arr[right]);
+        }
+
+        if(right-left+1<k){
+			right++;
+		}
+
+		else if(right-left+1==k)
+		{
+           //  calculation :ans
+		   if(lt.size()==0)
+		   {
+			   v.push_back(0);
+		   } 
+
+		   else
+		   {
+
+			   v.push_back(lt.front());
+			   if(lt.size()!=0 && arr[left]==lt.front())
+			   {
+				  lt.pop_front(); 
+			   } 
+			   
+		   } 
+		   left++;
+		   right++;
+
+		}
+	}
+      return v;
+}
