@@ -1,0 +1,49 @@
+// To determine the subarray (of length k) that has maximum sum .
+ 
+steps to remember :
+1.do the calculation needed for the problem.
+2.increment the right pointer window is formed (step 1 calculation till this satisfies)
+3.when we get window size as mentioned :
+    a.then again statement/expression are perform to get the ans.
+    b.calculations are done necesarry when  left pointer is to be incremented
+    c.slide the window.
+
+
+
+#include <iostream>
+#include <climits>
+#include <map>
+#include <string>
+using namespace std;
+
+// maximum sum subarray with size k :
+
+int main()
+{
+    int n, k, maxsum = 0;
+    cin >> n;
+    int *ptr = new int[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> ptr[i];
+    }
+    cin >> k;
+    int right = 0, left = 0, sum = 0;
+    while (right < n && left < n)
+    {
+        sum += ptr[right];
+        if (right - left + 1 < k)
+        {
+            right++;
+        }
+        else if (right - left + 1 == k)
+        {
+            maxsum = max(maxsum, sum);
+            sum -= ptr[left];
+            left++;
+            right++;
+        }
+    }
+    cout << maxsum;
+    return 0;
+}
