@@ -1,0 +1,43 @@
+Coding Ninja :
+https://www.codingninjas.com/studio/problems/maximum-of-all-subarrays-of-size-k_1170789
+
+
+#include <bits/stdc++.h> 
+vector<int> maxOfSubarray(vector<int> nums, int n, int k) 
+{
+	// Write your code here
+	list<int> lt;
+	vector<int> v;
+	int right=0,left=0;
+	while(right<n){
+
+		// calculations
+		while(!lt.empty() && (lt.back()<nums[right])){
+			lt.pop_back();
+		}
+
+		lt.push_back(nums[right]);
+
+		if(right-left+1 <k){
+			right++;
+		}
+
+        else if(right-left+1==k){
+
+            v.push_back(lt.front());
+
+			if(nums[left]==lt.front()){
+				lt.pop_front();
+			}
+
+			right++;
+			left++;
+		}
+
+	}
+
+	return v;
+
+	
+}
+
