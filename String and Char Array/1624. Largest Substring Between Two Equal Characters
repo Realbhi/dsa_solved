@@ -1,0 +1,24 @@
+LEETCODE :
+https://leetcode.com/problems/largest-substring-between-two-equal-characters/
+
+
+#include<bits/stdc++.h>
+class Solution {
+public:
+    int maxLengthBetweenEqualCharacters(string s) {
+        unordered_map<char,int> mp;
+        int len=s.length(),mxlen=-1;
+        
+        for(int i=0;i<len;i++){
+            if(mp.find(s[i])==mp.end()){
+                mp[s[i]]=i;
+            }
+
+            else {
+                mxlen=max(mxlen,i-mp[s[i]]-1);
+            }
+        }
+        
+        return mxlen;
+    }
+};
