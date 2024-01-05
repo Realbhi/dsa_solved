@@ -1,0 +1,21 @@
+LEETCODE :
+https://leetcode.com/problems/minimum-number-of-operations-to-make-array-empty/
+
+
+class Solution {
+public:
+    int minOperations(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        for(auto a: nums){
+            mp[a]++;
+        }
+
+        int count=0,add;
+
+        for(auto &itr:mp){
+            if(itr.second==1) return -1;
+            count+= (itr.second%3==0) ? itr.second/3 : (itr.second/3)+1;
+        }
+        return count;
+    }
+};
