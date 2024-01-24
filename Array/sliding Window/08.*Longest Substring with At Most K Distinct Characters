@@ -1,0 +1,42 @@
+CODING NINJA :
+https://www.codingninjas.com/studio/problems/longest-substring-with-at-most-k-distinct-characters_2221410
+
+#include<bits/stdc++.h>
+int kDistinctChars(int k, string &str)
+{
+    // Write your code here
+    unordered_map<char,int>mp;
+    int len=str.length();
+    int right=0,left=0,maxlen=INT_MIN;
+
+    while(right<len && left<len){
+
+        // calulation:
+        mp[str[right]]++;
+
+        //  condition not met:
+        if( mp.size() <k)  
+           right++;
+       
+        // condition met  
+        if(mp.size()==k ){
+            // Bring ans from calculation made:
+            maxlen=max(maxlen,right-left+1);
+            right++;
+        }
+
+        else if(mp.size()>k){
+            while(mp.size()>k && left<right){
+                // remove calulation for left index made:
+                mp[str[left]]--;
+                if(mp[str[left]]==0) mp.erase(str[left]);
+                left++;
+            }
+            right++;
+        }
+    }
+
+    return maxlen;
+}
+
+
