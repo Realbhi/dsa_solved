@@ -1,0 +1,26 @@
+CODING NINJA :
+https://www.codingninjas.com/studio/problems/ceiling-in-a-sorted-array_1825401
+
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+  // Write your code here.
+  int low = 0, high = n - 1, floor = -1, ceil = -1, mid;
+  if (a[0] > x)
+    return make_pair(-1, a[0]);
+  if (a[n - 1] < x)
+    return make_pair(a[n - 1], -1);
+  while (low <= high) {
+    mid = low + (high - low) / 2;
+    if (a[mid] <= x) {
+      floor = mid;
+      low = mid + 1;
+    } else {
+      high = mid - 1;
+    }
+  }
+
+  if (a[floor] == x)
+    return make_pair(a[floor], a[floor]);
+  ceil = floor + 1;
+  return make_pair(a[floor], a[ceil]);
+}
