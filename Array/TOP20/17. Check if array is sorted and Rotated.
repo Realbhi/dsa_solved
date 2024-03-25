@@ -1,0 +1,28 @@
+LEETCODE :
+https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/
+
+
+class Solution {
+public:
+    bool check(vector<int>& nums) {
+        
+/*     check for dip in the array. If we have more that one dip we cant have that array
+        as rotated and sorted.
+*/
+        int len=nums.size(),dipinNums=0;
+
+        for(int i=0;i<len;i++){
+
+            if(nums[i]>nums[(i+1)%len]){
+                dipinNums++;
+            }
+
+            if(dipinNums>1){
+                return false;
+            }
+        }
+        
+
+        return true;
+    }
+};
