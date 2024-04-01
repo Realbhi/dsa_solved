@@ -1,0 +1,61 @@
+Coding Ninja :
+https://www.naukri.com/code360/problems/missing-and-repeating-numbers_6828164
+
+Approach 1 :
+
+vector<int> findMissingRepeatingNumbers(vector < int > a) {
+    // Write your code here
+
+    int len=a.size() , repeat=-1 , missing=-1;
+    int hasharr[len+1]={0};
+
+    for(int i=0;i<len;i++){
+        hasharr[a[i]]++;
+    }
+
+    for(int i=1;i<=len;i++){
+        if(hasharr[i]==2) repeat=i;
+        if(hasharr[i]==0) missing=i;
+
+        if(repeat !=-1 && missing != -1){
+            break;
+        }
+    }
+
+    return {repeat,missing};
+    
+}
+
+
+Approach 2 :
+
+   long long  len =a.size();
+
+    // sum of n natural numbers
+   long long   sn = len * (len+1) /2;   
+
+   // sum of squares of natural number
+   long long  s2n = (len * (len+1) * (2*len +1)) / 6;
+
+   long long  s=0,s2=0;
+
+   for(int i=0;i<len;i++){
+       s+=a[i];
+       s2+= ( (long long )a[i] * (long long)a[i] );
+   }
+
+    // repeating - missing 
+    long long  val1 = s - sn;
+
+    // (reapeating - missing)^2  : expanding this and substituting repeating - missing we will get repeating + missing value.
+    // Then by calculating repeating - missing + repeating + missing we get repating value .
+
+    long long  val2 = s2 - s2n;
+    long long  mainval1= val2 / val1;
+    long long  repeating = (mainval1 + val1)/2;
+
+    // furthur finding missing value after finding repeating by using repeating + missing - repating
+    long long  missing = mainval1 - repeating;
+
+    return {(int) repeating, (int) missing};
+
