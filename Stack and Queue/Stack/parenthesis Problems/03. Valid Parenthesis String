@@ -1,0 +1,64 @@
+https://leetcode.com/problems/valid-parenthesis-string/
+
+Approach :
+
+Maintain two stacks:
+
+One stack to keep track of the indices of '(' brackets encountered so far.
+Another stack to keep track of the indices of '*' encountered so far.
+
+
+1. When encountering '(':
+    Push the index of '(' bracket into the stack for brackets.
+
+
+2. When encountering ')':
+     Check if there's a corresponding '(' for the current ')' at the top of the bracket stack. If yes, pop it from the stack, indicating a matching pair.
+    If the bracket stack is empty, indicating there's no '(' to match the current ')', check the stack for '*' characters.
+    If the '' stack is also empty, it means there's no matching '(' or '' for the current ')', so return false.
+
+3. When encountering '*':
+    Push the index of '*' into the stack for stars.
+    After iterating through the whole string:
+
+4. Check if the stack for brackets is empty.
+   If not empty, it means there are unmatched '(' brackets. We can try to nullify them with '*' if available.
+      If the stack for stars is also empty, it means there are '(' brackets without corresponding ')' or '*' to nullify them, so return false.
+         If the stack for stars is not empty, it implies there are '' available to potentially nullify '(' brackets. However, if any '' appears before its 
+         corresponding '(', it's invalid, so return false.
+      Pop both stacks until they are empty.
+   If the stack for brackets is empty, return true, indicating that all '(' brackets have been matched and nullified successfully.
+
+
+
+
+Solution : 
+      
+class Solution {
+public:
+    bool checkValidString(string s) {
+        int len = s.length();
+        stack<char> bracketstack;
+        stack<char> starstack;
+
+        for(int i=0;i<len;i++){
+            if(s[i]=='(') bracketstack.push(i);
+            else if(s[i]==')') 
+            {
+                if( !bracketstack.empty() ) bracketstack.pop();
+                else if( !starstack.empty() ) starstack.pop();
+                else return false;
+            }
+            else starstack.push(i); 
+        }
+        
+        while( !bracketstack.empty() ){
+            if( starstack.empty() ) return false;
+            if( starstack.top() < bracketstack.top() ) return false;
+            starstack.pop();
+            bracketstack.pop();
+        }
+        return true;
+
+    }
+};
