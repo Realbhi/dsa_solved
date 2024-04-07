@@ -1,0 +1,36 @@
+https://leetcode.com/problems/make-the-string-great/
+
+
+Approach :
+1. As we go on pushing the elements into the stack we check whether the element at the stack and my current element which i am comparing with has difference 
+   32 in ASCII value or not.
+2. If yes then pop out the element because it small and capital Letter combination.
+3. Then retrieve the great string from the stack itself .
+
+
+
+
+class Solution {
+public:
+    string makeGood(string s) {
+
+        int len = s.length();
+        string str="";
+        if(len==0) return str;
+        
+        //handle the characters with the stack.
+        stack<char>st;
+        for(int i=0; i <len; i++){
+            if( !st.empty() && abs(s[i]-st.top()) == 32 ) st.pop(); 
+            else  st.push(s[i]);
+        }
+
+        // To obtain the elements in order from stack.
+        while (!st.empty()) {
+            str = st.top()+ str ;
+            st.pop();
+        }
+        
+        return str;
+    }
+};
