@@ -1,0 +1,55 @@
+https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
+
+Approach : 
+
+1. stack can be invalid due to extra presence of '(' or ')' .
+
+2. So if we have '(' the will push its index  directly into the stack.
+
+3. When we encounter ')' ,we will check do we have corresponding '(' to make it valid 
+      if yes then pop 
+      else we will mark this as '*' in the string as its invalid , that is we dont have any corresponding ')' to make it valid
+
+4.After complete iteration of the string :
+    Now any remaining index of '(' in the stack means these are extra so we will again mark '*' for its invalidness.
+
+5.By traversing the string again ,wherever we get '*' we will not consider it and consider all other element and return it.
+
+
+
+Solution :
+
+
+class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        int len=s.length();
+        stack<int>st;
+        string str="";
+        int i=0;
+        while(i<len){
+
+            if(s[i]=='(')  st.push(i);
+
+            else if(s[i]==')'){
+                if(!st.empty()) st.pop();
+                else s[i] = '*';
+            }
+            i++;
+
+        }
+
+
+        while(!st.empty()){
+            s[st.top()]='*';
+            st.pop();
+        }
+
+        for(char c :s){
+            if(c!='*') str+=c;
+        }
+
+        return str;
+
+    }
+};
